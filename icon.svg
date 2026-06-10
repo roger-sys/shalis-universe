@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="cosmic-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7ebb" />
+      <stop offset="50%" stop-color="#b18eff" />
+      <stop offset="100%" stop-color="#d0f0ff" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle with smooth gradient -->
+  <circle cx="256" cy="256" r="240" fill="url(#cosmic-grad)" />
+  
+  <!-- Outer sparkles -->
+  <path d="M120 120 L130 135 L145 140 L130 145 L120 160 L110 145 L95 140 L110 135 Z" fill="#ffffff" opacity="0.9" />
+  <path d="M380 340 L388 355 L403 360 L388 365 L380 380 L372 365 L357 360 L372 355 Z" fill="#ffffff" opacity="0.9" />
+  <path d="M400 120 L406 130 L416 133 L406 136 L400 146 L394 136 L384 133 L394 130 Z" fill="#ffffff" opacity="0.75" />
+
+  <!-- Smiling Star -->
+  <path d="M256 70 L300 180 L416 180 L322 250 L358 360 L256 295 L154 360 L190 250 L96 180 L212 180 Z" fill="#ffd23f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" />
+  
+  <!-- Star Eyes -->
+  <circle cx="216" cy="210" r="11" fill="#4a3e56" />
+  <circle cx="296" cy="210" r="11" fill="#4a3e56" />
+  
+  <!-- Star Smile -->
+  <path d="M236 245 Q256 268 276 245" stroke="#4a3e56" stroke-width="9" stroke-linecap="round" fill="none" />
+  
+  <!-- Cute Blush cheeks -->
+  <ellipse cx="192" cy="225" rx="14" ry="7" fill="#ff7ebb" opacity="0.75" />
+  <ellipse cx="320" cy="225" rx="14" ry="7" fill="#ff7ebb" opacity="0.75" />
+</svg>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="day">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaki's Universe ✨</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!-- Progressive Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#b18eff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Shaki's Universe">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Magical Canvas Background -->
+    <canvas id="universe-canvas"></canvas>
+
+    <!-- App Wrapper -->
+    <div class="app-container">
+        <!-- Floating Header -->
+        <header class="app-header glass">
+            <div class="logo">
+                <span class="logo-emoji">✨</span>
+                <h1>Shaki's Universe</h1>
+            </div>
+            <div class="header-actions">
+                <div class="achievements-pill glass" title="Your total stars earned!">
+                    <span class="pill-icon">⭐</span>
+                    <span id="header-star-count">0</span><span class="stars-label"> Stars</span>
+                </div>
+                <button id="theme-toggle" class="theme-btn glass" aria-label="Toggle Night Mode">
+                    <!-- Sun Icon (Default) -->
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon Icon (Hidden initially) -->
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" style="display: none;">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Welcome Banner (Hero Section) -->
+        <section class="welcome-hero glass animate-fade-in">
+            <div class="hero-content">
+                <h2 class="hero-title">Welcome to Shaki's Universe ✨</h2>
+                <p class="hero-subtitle">A place filled with positivity, fun, motivation, and smiles.</p>
+                <div class="divider"></div>
+                <p class="hero-reminder">Remember: You are stronger, smarter, and more amazing than you think. 💜</p>
+                <div class="cute-mascot">
+                    <div class="sparkle-svg s1">✨</div>
+                    <div class="sparkle-svg s2">💖</div>
+                    <div class="sparkle-svg s3">⭐</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid Dashboard Layout -->
+        <main class="dashboard-grid">
+            
+            <!-- 1. Daily Motivation & Compliments (Combo Section) -->
+            <section class="grid-card glass animate-card" id="motivation-card">
+                <div class="card-header">
+                    <span class="card-icon">🌞</span>
+                    <h3>Daily Motivation</h3>
+                </div>
+                <div class="card-body quote-container">
+                    <div class="quote-card-wrapper">
+                        <div class="quote-card-front" id="quote-card">
+                            <p class="quote-text">"Your limitation—it's only your imagination."</p>
+                            <p class="quote-author">— Sparky the Star</p>
+                        </div>
+                    </div>
+                    <button class="primary-btn pulse-glow" id="motivate-btn">
+                        <span>Motivate Me! 🌟</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 2. Compliment Generator -->
+            <section class="grid-card glass animate-card" id="compliments-card">
+                <div class="card-header">
+                    <span class="card-icon">👑</span>
+                    <h3>Shaki's Compliments</h3>
+                </div>
+                <div class="card-body compliment-container">
+                    <div class="compliment-display" id="compliment-display">
+                        Click the button below to receive a special note just for you! 💖
+                    </div>
+                    <button class="secondary-btn" id="compliment-btn">
+                        <span>Generate Compliment 🌸</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 3. Mood Booster -->
+            <section class="grid-card glass animate-card" id="mood-card">
+                <div class="card-header">
+                    <span class="card-icon">😊</span>
+                    <h3>Mood Booster</h3>
+                </div>
+                <div class="card-body mood-container">
+                    <p class="section-desc">How are you feeling right now, Shaki?</p>
+                    <div class="mood-buttons">
+                        <button class="mood-btn happy" data-mood="happy" title="Happy">
+                            <span class="mood-emoji">😊</span>
+                            <span class="mood-label">Happy</span>
+                        </button>
+                        <button class="mood-btn sad" data-mood="sad" title="Sad">
+                            <span class="mood-emoji">😢</span>
+                            <span class="mood-label">Sad</span>
+                        </button>
+                        <button class="mood-btn stressed" data-mood="stressed" title="Stressed">
+                            <span class="mood-emoji">😫</span>
+                            <span class="mood-label">Stressed</span>
+                        </button>
+                        <button class="mood-btn tired" data-mood="tired" title="Tired">
+                            <span class="mood-emoji">😴</span>
+                            <span class="mood-label">Tired</span>
+                        </button>
+                        <button class="mood-btn excited" data-mood="excited" title="Excited">
+                            <span class="mood-emoji">🤩</span>
+                            <span class="mood-label">Excited</span>
+                        </button>
+                    </div>
+                    <div class="mood-response-box glass" id="mood-response">
+                        <p class="mood-placeholder">Choose a mood above to receive some magical vibes! ✨</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Fun Wheel of Fortune -->
+            <section class="grid-card glass animate-card" id="wheel-card">
+                <div class="card-header">
+                    <span class="card-icon">🎡</span>
+                    <h3>Magic Wheel of Fun</h3>
+                </div>
+                <div class="card-body wheel-container">
+                    <p class="section-desc">Can't decide what to do? Let the universe choose!</p>
+                    <div class="wheel-wrapper">
+                        <div class="wheel-pointer">▼</div>
+                        <canvas id="wheel-canvas" width="280" height="280"></canvas>
+                    </div>
+                    <button class="primary-btn spin-btn" id="spin-btn">
+                        <span>SPIN THE WHEEL 🎡</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 5. Daily Challenge & Achievement Board -->
+            <section class="grid-card glass animate-card" id="challenge-card">
+                <div class="card-header">
+                    <span class="card-icon">🎯</span>
+                    <h3>Daily Challenge</h3>
+                </div>
+                <div class="card-body challenge-container">
+                    <div class="active-challenge-box glass">
+                        <span class="sparkle-star">✨</span>
+                        <div class="challenge-details">
+                            <h4 id="current-challenge-title">Loading Challenge...</h4>
+                            <p class="challenge-points">Completing this awards 1 Star!</p>
+                        </div>
+                    </div>
+                    <button class="success-btn" id="complete-challenge-btn">
+                        <span>I Completed It! 🎉</span>
+                    </button>
+                    <button class="text-link-btn" id="new-challenge-btn">Get Another Challenge</button>
+                </div>
+            </section>
+
+            <section class="grid-card glass animate-card" id="achievements-card">
+                <div class="card-header">
+                    <span class="card-icon">🏆</span>
+                    <h3>Achievement Board</h3>
+                </div>
+                <div class="card-body achievements-container">
+                    <div class="ach-stats">
+                        <div class="ach-stat-item glass">
+                            <span class="stat-val" id="total-stars">0</span>
+                            <span class="stat-lbl">Stars Collected</span>
+                        </div>
+                        <div class="ach-stat-item glass">
+                            <span class="stat-val" id="badge-title">Novice 🌟</span>
+                            <span class="stat-lbl">Cosmic Rank</span>
+                        </div>
+                    </div>
+                    <div class="ach-badges-list">
+                        <div class="badge-item locked" id="badge-1" title="Earn 3 stars to unlock">
+                            <span class="badge-icon">⭐</span>
+                            <span class="badge-name">Star Cadet</span>
+                        </div>
+                        <div class="badge-item locked" id="badge-2" title="Earn 8 stars to unlock">
+                            <span class="badge-icon">💫</span>
+                            <span class="badge-name">Nebula Voyager</span>
+                        </div>
+                        <div class="badge-item locked" id="badge-3" title="Earn 15 stars to unlock">
+                            <span class="badge-icon">🌌</span>
+                            <span class="badge-name">Galaxy Explorer</span>
+                        </div>
+                        <div class="badge-item locked" id="badge-4" title="Earn 25 stars to unlock">
+                            <span class="badge-icon">👑</span>
+                            <span class="badge-name">Cosmic Queen</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Relaxation Corner -->
+            <section class="grid-card glass animate-card span-two-cols" id="relaxation-card">
+                <div class="card-header">
+                    <span class="card-icon">🎵</span>
+                    <h3>Relaxation Corner</h3>
+                </div>
+                <div class="card-body relaxation-container">
+                    <!-- Clouds container -->
+                    <div class="clouds-bg">
+                        <div class="cloud cloud-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="100" height="60">
+                                <path d="M10,40 Q15,25 30,30 Q45,15 65,30 Q80,20 90,40 Q98,50 85,55 L15,55 Q5,50 10,40 Z" fill="rgba(255,255,255,0.7)"></path>
+                            </svg>
+                        </div>
+                        <div class="cloud cloud-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="120" height="72">
+                                <path d="M10,40 Q15,25 30,30 Q45,15 65,30 Q80,20 90,40 Q98,50 85,55 L15,55 Q5,50 10,40 Z" fill="rgba(255,255,255,0.6)"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="breathing-session">
+                        <div class="breathing-circle-wrapper">
+                            <div class="breathing-circle" id="breath-circle"></div>
+                            <span class="breath-text" id="breath-instruction">Click Start</span>
+                        </div>
+                        <div class="breathing-controls">
+                            <p class="section-desc">Take a minute to focus on your breathing. Breathe along with the expanding bubble.</p>
+                            <button class="primary-btn" id="start-breath-btn">
+                                <span>Start Breathing Exercise 🧘</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Dream Wall -->
+            <section class="grid-card glass animate-card span-two-cols" id="dreamwall-card">
+                <div class="card-header">
+                    <span class="card-icon">🌈</span>
+                    <h3>Shaki's Dream Wall</h3>
+                </div>
+                <div class="card-body dreamwall-container">
+                    <p class="section-desc">Pin your dreams, wishes, and goals! Choose a color and stick it to the wall.</p>
+                    <div class="dream-input-area glass">
+                        <input type="text" id="dream-input" placeholder="I want to learn to paint... 🎨" maxlength="80">
+                        <div class="dream-color-pickers">
+                            <button class="color-picker active" data-color="pink" style="background-color: #ffd3e8;" title="Pastel Pink"></button>
+                            <button class="color-picker" data-color="lavender" style="background-color: #e8d7ff;" title="Lavender"></button>
+                            <button class="color-picker" data-color="blue" style="background-color: #d0f0ff;" title="Sky Blue"></button>
+                            <button class="color-picker" data-color="cream" style="background-color: #fef0db;" title="Creamy Yellow"></button>
+                        </div>
+                        <button class="success-btn" id="add-dream-btn">Pin Dream 📌</button>
+                    </div>
+                    <div class="dream-board" id="dream-board">
+                        <!-- Sticky notes will be injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. Mini Games (Arcade Center) -->
+            <section class="grid-card glass animate-card span-two-cols" id="games-card">
+                <div class="card-header">
+                    <span class="card-icon">🎮</span>
+                    <h3>Arcade Center</h3>
+                </div>
+                <div class="card-body games-container">
+                    <div class="games-tabs">
+                        <button class="tab-btn active" data-tab="rps">Rock Paper Scissors</button>
+                        <button class="tab-btn" data-tab="guess">Number Guesser</button>
+                        <button class="tab-btn" data-tab="clicker">Star Clicker</button>
+                    </div>
+
+                    <div class="tab-content" id="tab-rps">
+                        <div class="game-instructions">Beat the robot! Choose your weapon. 🤖</div>
+                        <div class="rps-scores">
+                            <div class="score-box">
+                                <span class="score-label">Shaki</span>
+                                <span class="score-val" id="rps-player-score">0</span>
+                            </div>
+                            <span class="score-vs">VS</span>
+                            <div class="score-box">
+                                <span class="score-label">Cosmo Bot</span>
+                                <span class="score-val" id="rps-bot-score">0</span>
+                            </div>
+                        </div>
+                        <div class="rps-choices">
+                            <button class="rps-btn" data-choice="rock">✊<span class="lbl">Rock</span></button>
+                            <button class="rps-btn" data-choice="paper">✋<span class="lbl">Paper</span></button>
+                            <button class="rps-btn" data-choice="scissors">✌️<span class="lbl">Scissors</span></button>
+                        </div>
+                        <div class="game-result-box glass" id="rps-result">
+                            <p class="placeholder">Make a move to start!</p>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-guess" style="display: none;">
+                        <div class="game-instructions">I'm thinking of a number between 1 and 100. Can you guess it? 🤔</div>
+                        <div class="guess-input-box">
+                            <input type="number" id="guess-input" min="1" max="100" placeholder="50">
+                            <button class="primary-btn" id="guess-btn"><span>Guess!</span></button>
+                            <button class="secondary-btn" id="guess-reset-btn" style="display: none;"><span>Play Again</span></button>
+                        </div>
+                        <div class="guess-attempts">Attempts: <span id="guess-count">0</span></div>
+                        <div class="game-result-box glass" id="guess-result">
+                            <p class="placeholder">Take your first guess!</p>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-clicker" style="display: none;">
+                        <div class="game-instructions">Catch as many stars as you can in 15 seconds! Ready? ⚡</div>
+                        <div class="clicker-dashboard">
+                            <div class="stat-pnl">Score: <span id="clicker-score">0</span></div>
+                            <div class="stat-pnl">Time: <span id="clicker-timer">15</span>s</div>
+                            <div class="stat-pnl">High Score: <span id="clicker-high">0</span></div>
+                        </div>
+                        <div class="clicker-arena-wrapper">
+                            <div class="clicker-arena glass" id="clicker-arena">
+                                <div class="arena-start-screen" id="clicker-start-screen">
+                                    <button class="primary-btn" id="start-clicker-btn"><span>Start Catching! 🌟</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. Star Catcher (Secret Messages) -->
+            <section class="grid-card glass animate-card span-two-cols" id="secrets-card">
+                <div class="card-header">
+                    <span class="card-icon">💌</span>
+                    <h3>Secret Star Messages</h3>
+                </div>
+                <div class="card-body secrets-container">
+                    <p class="section-desc">The cosmos has scattered glowing stars containing secret sweet notes just for Shaki. Click them to reveal their magical messages!</p>
+                    <div class="star-map glass" id="star-map">
+                        <!-- Scattered stars will be generated here -->
+                    </div>
+                    <div class="secret-disclosure-box glass" id="secret-disclosure">
+                        <p class="disclosure-placeholder">✨ Tap any shining star above to read a secret message... ✨</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer glass">
+            <p>Made with 💜 for Shaki • Shaki's Universe © 2026</p>
+        </footer>
+    </div>
+
+    <!-- Celebration Modal (for Win Wheel / Achievements) -->
+    <div class="modal-overlay" id="celebration-modal">
+        <div class="modal-content glass">
+            <span class="modal-close" id="modal-close-btn">&times;</span>
+            <div class="modal-icon" id="modal-icon">🎉</div>
+            <h3 class="modal-title" id="modal-title">You Did It!</h3>
+            <p class="modal-message" id="modal-message">Here is your special prize or accomplishment.</p>
+            <button class="primary-btn" id="modal-action-btn"><span>Hooray! 💖</span></button>
+        </div>
+    </div>
+
+    <!-- Main Application Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
