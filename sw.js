@@ -2,7 +2,7 @@
    SHAKI'S UNIVERSE - SERVICE WORKER (sw.js)
    ========================================== */
 
-const CACHE_NAME = "shakis-universe-v2";
+const CACHE_NAME = "shakis-universe-v3";
 const ASSETS_TO_CACHE = [
     "./",
     "./index.html",

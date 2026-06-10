@@ -107,7 +107,7 @@ try {
 
 const state = {
     stars: parseInt(localStorage.getItem("shaki_stars")) || 0,
-    theme: localStorage.getItem("shaki_theme") || "day",
+    theme: localStorage.getItem("shaki_theme") || "night",
     dreams: (parsedDreams && Array.isArray(parsedDreams)) ? parsedDreams : [
         { id: 1, text: "Chase dreams, smile often! ✨", color: "pink", date: "2026-06-10" },
         { id: 2, text: "Eat lots of chocolate ice cream 🍦", color: "blue", date: "2026-06-10" }
